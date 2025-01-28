@@ -1,14 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item List</title>
-    <link rel="stylesheet" href="{% static 'vendor/bootstrap.css' %}">
-</head>
-<body class="container mt-5">
-    <h1 class="mt-4">Item List</h1>
+{% extends "base.html" %}
+
+{% block title %}Item List{% endblock %}
+{% block header %}Item List{% endblock %}
+
+{% block content %}
     <a href="{% url 'item_create' %}" class="btn btn-primary mb-3">Add New Item</a>
     <ul class="list-group">
         {% for item in items %}
@@ -18,13 +13,13 @@
                 </div>
                 <div>
                     <a href="{% url 'item_update' item.id %}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{% url 'item_delete' item.id %}" method="post" style="display: inline;">
+                    <a href="{% url 'item_delete' item.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    <!-- <form action="{% url 'item_delete' item.id %}" method="post" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
+                    </form> -->
                 </div>
             </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
